@@ -1,6 +1,7 @@
 import userModel from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import tokenBlackListModel from "../models/blacklist.model.js";
 /**
  * 
  * @name register new user
@@ -61,7 +62,7 @@ async function registerUserContoller(req,res){
 
 
 async function loginUserController(req,res){
-    try {
+
         const {email,password} = req.body;
 
         const user = await userModel.findOne({email})
@@ -88,17 +89,32 @@ async function loginUserController(req,res){
                 id:user._id,
                 username:user.username,
                 email : user.email,
-            }
-        })
-    } catch (error) {
-        console.error("Login Error:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
+        }
+    })
 }
 
 
+/**
+ * @name logout controller
+ * @description logout user
+ * @access Public
+ */
 
+async function logoutController(req,res){
+    const token = req.cookies.token
 
-export {registerUserContoller,loginUserController};
+    if(token){
+        await tokenBlackListModel.create({
+            token
+        })
+    }
+    res.clearCookie("token")
+    res.status(200).json({
+        message:"User logged out successfully"
+    })
+
+}
+
+export {registerUserContoller,loginUserController,logoutController};
 
 
