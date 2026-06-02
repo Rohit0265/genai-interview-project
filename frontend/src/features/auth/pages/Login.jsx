@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router';
 
 const Login = () => {
 
@@ -37,6 +38,7 @@ const handleSubmit = (e)=>{
             Login
           </button>
         </form>
+                <p>New here ?  <Link to="/register">Signup</Link> </p>
       </div>
     </main>
   )
