@@ -27,9 +27,6 @@ authRouter.post("/register",registerUserContoller)
 authRouter.post("/login",loginUserController)
 
 
-
-
-
 /**
  * @route POST /api/auth/logout
  * @description logout user
