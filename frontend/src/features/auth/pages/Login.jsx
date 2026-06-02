@@ -1,11 +1,20 @@
 import React from 'react'
 
 const Login = () => {
+
+
+
+const handleSubmit = (e)=>{
+    e.prevent.deafult();
+    const login = fetch("/api/auth/login")
+}
+
+
   return (
     <main className="min-h-screen w-full flex items-center justify-center bg-slate-950 text-slate-100 p-4 font-sans">
       <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl"> 
         <h1 className="text-2xl font-bold text-center text-white mb-6">Login</h1>
-        <form className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
             <label htmlFor="email" className="block text-sm font-medium text-slate-300">Email</label>
             <input 
