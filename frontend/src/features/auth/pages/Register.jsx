@@ -1,7 +1,9 @@
 import React from 'react'
-
+import { Link, useNavigate } from 'react-router';
 const Register = () => {
 
+
+const navigate = useNavigate();
 
 const handleSubmit = (e)=>{
     e.prevent.deafult();
@@ -48,6 +50,7 @@ const handleSubmit = (e)=>{
             Register
           </button>
         </form>
+        <p>Already have an account? <Link to="/login">Login</Link> </p>
       </div>
     </main>
   )
