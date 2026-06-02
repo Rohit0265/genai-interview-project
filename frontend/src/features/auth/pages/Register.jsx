@@ -18,7 +18,7 @@ const handleSubmit = (e)=>{
         <h1 className="text-2xl font-bold text-center text-white mb-6">Register</h1>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
-            <label htmlFor="email" className="block text-sm font-medium text-slate-300">Username</label>
+            <label htmlFor="text" className="block text-sm font-medium text-slate-300">Username</label>
             <input 
               id="username" 
               type="text" 
