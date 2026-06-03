@@ -7,6 +7,7 @@ export async function register({username,email,password}){
         },{
             withCredentials:true
         })
+        return response.data
     } 
     catch (error) {
         copnsole.log(error)
@@ -20,6 +21,7 @@ export async function login(email,password){
         },{
             withCredentials:true
         })
+               return response.data
     } catch (error) {
         console.log(error)
     }
