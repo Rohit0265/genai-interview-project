@@ -72,7 +72,7 @@ async function generateInterviewReport({resume,selfDescription,jobDecription}){
       responseSchema: interviewReportSchema.toJSONSchema(),
     },
   });
-  console.log(JSON.parse(response.text))
+  return JSON.parse(response.text)
 }
 
 export default generateInterviewReport;
