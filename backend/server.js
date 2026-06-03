@@ -1,11 +1,12 @@
-import dotenv from "dotenv";
+import 'dotenv/config';
 import app from "./src/app.js";
 import connection from "./src/config/database.js";
+import invoking from "./src/services/ai.services.js";
 
-dotenv.config();
 connection();
 
+invoking();
 
 app.listen(3000,()=>{
-    console.log("app is running on port 3000")
-})
+    console.log("app is running on port 3000");
+});
