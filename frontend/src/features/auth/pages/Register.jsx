@@ -1,13 +1,19 @@
 import React from 'react'
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 const Register = () => {
 
 
 const navigate = useNavigate();
+const [user,setUser] = useState(null)
+const [password,setPassword] = useState(null)
+const [email,setEmail] = useState(null)
+
+
+
 
 const handleSubmit = (e)=>{
     e.preventDefault();
-    const login = fetch("/api/auth/login")
 }
 
 
@@ -22,6 +28,7 @@ const handleSubmit = (e)=>{
           <div className="space-y-1.5">
             <label htmlFor="text" className="block text-sm font-medium text-slate-300">Username</label>
             <input 
+            onChange={(e)=>setUser(e.target.value)}
               id="username" 
               type="text" 
               placeholder="Enter your username" 
@@ -30,7 +37,8 @@ const handleSubmit = (e)=>{
           </div>
           <div className="space-y-1.5">
             <label htmlFor="email" className="block text-sm font-medium text-slate-300">Email</label>
-            <input 
+            <input
+            onChange={(e)=>setEmail(e.target.value)} 
               id="email" 
               type="text" 
               placeholder="Enter email address" 
@@ -40,6 +48,7 @@ const handleSubmit = (e)=>{
           <div className="space-y-1.5">
             <label htmlFor="password" className="block text-sm font-medium text-slate-300">Password</label>
             <input 
+              onChange={(e)=>setPassword(e.target.value)}
               id="password" 
               type="password" 
               placeholder="Enter your password" 
