@@ -6,7 +6,7 @@ const Register = () => {
 const navigate = useNavigate();
 
 const handleSubmit = (e)=>{
-    e.prevent.deafult();
+    e.preventDefault();
     const login = fetch("/api/auth/login")
 }
 

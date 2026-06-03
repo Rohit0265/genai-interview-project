@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext, AuthProvider } from "../auth.context";
 import { login,register,logout,getMe
  } from "../services/auth.api";
+import { useNavigate } from "react-router";
 
 
 
@@ -9,17 +10,18 @@ import { login,register,logout,getMe
 export const useAuth = ()=>{
     const context = useContext(AuthContext)
     const {user,setuser,loading,setLoading} = context
+    const navigate = useNavigate()
 
     const handleLogin = async ({email,password})=>{
         try {
             setLoading(true)
             const data = await login({email,password})
+            console.log(data)
             setuser(data.user);
-            
+            navigate("/")
         } catch (error) {
             console.log(error)
-        }finally{
-            
+        }finally{   
             setLoading(false)
         }
     }
@@ -30,7 +32,6 @@ export const useAuth = ()=>{
             setLoading(true)
             const data = await register({username,email,password})
             setuser(data.user);
-            
         } catch (error) {
             console.log(error)
         }finally{
@@ -43,7 +44,7 @@ export const useAuth = ()=>{
         try {
             
             setLoading(true)
-            const data = await login()
+            const data = await logout()
             setuser(null);
         } catch (error) {
             console.log(error)
