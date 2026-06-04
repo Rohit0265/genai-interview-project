@@ -1,4 +1,6 @@
+import { ToolType } from "@google/genai"
 import mongoose, { Mongoose } from "mongoose"
+import { number } from "zod"
 
 /**
  * -job description : string
@@ -68,7 +70,7 @@ const behavioralQuestionSchema = new mongoose.Schema({
 
 
 
-const skillgapSchema = new mongoose.model({
+const skillgapSchema = new mongoose.Schema({
     skill:{
         type:String,
         required:[true,"skill is required"]
@@ -120,7 +122,11 @@ const interviewReportSchema = new mongoose.Schema({
     technicalQuestions:[technicalQuestionSchema],
     behavioralQuestions:[behavioralQuestionSchema],
     skillgaps:[skillgapSchema],
-    preparationPlan:[preparationPlanSchema]
+    preparationPlan:[preparationPlanSchema],
+    user:{
+        type : mongoose.Schema.Types.ObjectId,
+        ref:"users"
+    }
 },{
     timestamps:true
 })
