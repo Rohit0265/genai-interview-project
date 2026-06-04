@@ -48,7 +48,7 @@ matchScore:z.number().describe("A score between 0 and 100 how well the candidate
 
 })
 
-async function generateInterviewReport({resume,selfDescription,jobDecription}){
+async function generateInterviewReport({resume,selfDescription,jobDescription}){
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash-lite",
     contents: `
@@ -56,7 +56,7 @@ async function generateInterviewReport({resume,selfDescription,jobDecription}){
     
     Resume: ${resume}
     Self Description: ${selfDescription}
-    Job Description: ${jobDecription}
+    Job Description: ${jobDescription}
     
     Please generate the interview report in the following format:
     

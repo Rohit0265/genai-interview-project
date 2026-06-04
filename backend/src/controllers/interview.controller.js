@@ -7,17 +7,17 @@ import interviewReportModel from "../models/interview.model.js";
 const createInterviewReport = async(req,res) => {
     const resumeFile = req.file
     const resumeContent = await (new PDFParse(Uint8Array.from(req.file.buffer))).getText()
-    const {selfDescription,jobDecription} = req.body
+    const {selfDescription,jobDescription} = req.body
     const interviewReportByAI = await generateInterviewReport({
         resume:resumeContent.text,
         selfDescription,
-        jobDecription
+        jobDescription
     })
     const interviewReport = await interviewReportModel.create({
         user:req.user.id,
         resume:resumeContent.text,
         selfDescription,
-        jobDecription,
+        jobDescription,
         ...interviewReportByAI,
     })
     res.status(200).json({
