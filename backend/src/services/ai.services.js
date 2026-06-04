@@ -9,7 +9,7 @@ const ai = new GoogleGenAI({
 async function invoking() {
     console.log("API KEY:", process.env.GOOGLE_API_KEY);
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
+    model: "gemini-2.5-flash-lite",
     contents: "Explain how AI works in a few words",
   });
   console.log(response.text);
@@ -50,7 +50,7 @@ matchScore:z.number().describe("A score between 0 and 100 how well the candidate
 
 async function generateInterviewReport({resume,selfDescription,jobDecription}){
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
+    model: "gemini-2.5-flash-lite",
     contents: `
     Generate an interview report for the following candidate based on their resume, self-description, and job description.
     
