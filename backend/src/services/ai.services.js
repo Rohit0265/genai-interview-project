@@ -45,6 +45,8 @@ matchScore:z.number().describe("A score between 0 and 100 how well the candidate
      focus:z.string().describe("THe main focus of this day in the preparatoion plan, e.g. read a specific book or topic"),
      tasks:z.array(z.string().describe("The task to be performed on this day,e.g. solve specific problems from the book or topic")).describe("tasks that should be performed on this day")
      })).describe("The preparation plan for the candidate, which is a list of days and the tasks to be performed on each day"),
+     title:z.string().describe("The title of the job for which the interview is being conducted"),
+     
 
 })
 

@@ -1,6 +1,6 @@
 import express from "express";
 import authuser from "../middlewares/auth.middleware.js";
-import createInterviewReport from "../controllers/interview.controller.js";
+import {createInterviewReport,getInterviewReport,getAllInterviewReport} from "../controllers/interview.controller.js";
 import upload from "../middlewares/files.middleware.js"
 const interviewRouter = express.Router();
 
@@ -14,7 +14,27 @@ const interviewRouter = express.Router();
 
 interviewRouter.post('/',authuser,upload.single("resume"),createInterviewReport)
 
+/**
+ * @route get /api/interview/report/:interviewId
+ * @description get a interview report
+ * @access private
+ * 
+ */
+
+interviewRouter.get('/report/:interviewId',authuser,getInterviewReport)
  
+
+
+/**
+ * @route get /api/interview/
+ * @description hget all interview reports of logges in user
+ * @access private
+ */
+
+interviewRouter.get('/report/interview',authuser,getAllInterviewReport)
+
+
+
 
 
 export default interviewRouter;
