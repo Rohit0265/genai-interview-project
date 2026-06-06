@@ -14,9 +14,22 @@ const Interview = () => {
   const { interviewId } = useParams()
 
 
-  const { report, getReportById, loading } = useInterview()
+  const { report, getReportById, loading, getResumePdf } = useInterview()
 
   const [expandedIndex, setExpandedIndex] = useState(null)
+  const [downloading, setDownloading] = useState(false)
+
+  const handleDownloadResume = async () => {
+    try {
+      setDownloading(true)
+      await getResumePdf(interviewId)
+    } catch (err) {
+      console.error(err)
+      alert("Failed to generate and download resume PDF. Please try again.")
+    } finally {
+      setDownloading(false)
+    }
+  }
 
   useEffect(() => {
     if (interviewId) {
@@ -111,6 +124,32 @@ const Interview = () => {
               Road Map
             </button>
           </nav>
+
+          {/* Download Resume Section */}
+          <div className="mt-auto pt-6 border-t border-slate-900 flex flex-col space-y-3">
+            <div className="text-[10px] font-bold uppercase tracking-widest text-slate-600">
+              Export Resume
+            </div>
+            <button
+              onClick={handleDownloadResume}
+              disabled={downloading}
+              className="w-full flex items-center justify-center space-x-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 transition-all px-4 py-3 rounded-xl shadow-lg shadow-indigo-600/10 cursor-pointer border border-indigo-500/20 active:scale-[0.98]"
+            >
+              {downloading ? (
+                <>
+                  <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                  <span>Generating PDF...</span>
+                </>
+              ) : (
+                <>
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Download Resume PDF</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Middle Main Content Area (6/12 width) */}

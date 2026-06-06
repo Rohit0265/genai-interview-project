@@ -1,6 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 import {z} from "zod";
 import {zodToJsonSchema} from "zod-to-json-schema";
+import puppeteer from "puppeteer";
 
 const ai = new GoogleGenAI({
     apiKey:process.env.GOOGLE_API_KEY
@@ -81,7 +82,9 @@ async function generateInterviewReport({resume,selfDescription,jobDescription}){
 
 async function GeneratePDF(htmlContent){
 
-const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
   const page = await browser.newPage();
 
   // Set the content of the page to our generated HTML
@@ -123,10 +126,11 @@ const response = await ai.models.generateContent({
 })
 const jsonContent = JSON.parse(response.text)
 
-const pdfBuffer = GeneratePDF(jsonContent.resumehtml)
+const pdfBuffer = await GeneratePDF(jsonContent.resumehtml)
 return pdfBuffer
 
 }
 
 
-export default {generateInterviewReport,generateResumePdf};
+export { generateInterviewReport, generateResumePdf };
+export default generateInterviewReport;

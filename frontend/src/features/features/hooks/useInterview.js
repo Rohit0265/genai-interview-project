@@ -63,7 +63,6 @@ export const useInterview = ()=>{
 
 
     const getResumePdf = async(interviewId)=>{
-        setLoading(true);
         let response = null;
 
         try{
@@ -78,12 +77,10 @@ export const useInterview = ()=>{
             link.download = `resume_${interviewId}.pdf`
             link.click()
             URL.revokeObjectURL(url)
-            return response.pdf;
+            return response;
         }catch(error){
             console.log("error");
             throw error;
-        }finally{
-            setLoading(false);
         }
     }
 

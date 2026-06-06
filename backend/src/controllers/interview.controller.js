@@ -1,6 +1,6 @@
 
 import {PDFParse} from "pdf-parse";
-import  {generateInterviewReport,generateResumePdf} from "../services/ai.services.js";
+import  {generateInterviewReport,generateResumePdf as generateResumePdfService} from "../services/ai.services.js";
 import interviewReportModel from "../models/interview.model.js";
 
 /**
@@ -77,9 +77,7 @@ const generateResumePdf = async(req,res) => {
 
     const {resume,jobDescription,selfDescription} = interviewReport
 
-    const pdf = await generateResumePdf({resume,jobDescription,selfDescription})
-
-    const pdfbuffer = await generateResumePdf({resume,jobDescription,selfDescription})
+    const pdfbuffer = await generateResumePdfService({resume,jobDescription,selfDescription})
 
 
     res.set({
