@@ -17,7 +17,7 @@ const interviewRouter = express.Router();
  * 
  */
 
-interviewRouter.post('/',authuser,upload.single("resume"),createInterviewReport)
+interviewRouter.post('/generate',authuser,upload.single("resumeFile"),createInterviewReport)
 
 /**
  * @route get /api/interview/report/:interviewId
@@ -36,7 +36,7 @@ interviewRouter.get('/report/:interviewId',authuser,getInterviewReport)
  * @access private
  */
 
-interviewRouter.get('/report/interview',authuser,getAllInterviewReport)
+interviewRouter.get('/',authuser,getAllInterviewReport)
 
 
 

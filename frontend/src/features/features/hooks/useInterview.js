@@ -1,4 +1,4 @@
-import {generateInterviewReport,getAllInterviewReports,getInterviewReportById} from "./services.api.js";
+import {generateInterviewReport,getAllInterviewReports,getInterviewReportById} from "../services/services.api.js";
 
 import {useContext} from "react";
 
@@ -23,8 +23,8 @@ export const useInterview = ()=>{
         try{
             setLoading(true);
             const response = await generateInterviewReport({jobDescription,selfDescription,resumeFile});
-            setReport(response);
-            // return response;
+            setReport(response.interviewReport);
+            return response.interviewReport;
         }catch(error){
             console.log("error");
             throw error;
@@ -36,9 +36,9 @@ export const useInterview = ()=>{
     const getReportById = async(interviewId)=>{
         try{
             setLoading(true);
-            const response = await getInterviewReportById(interviewId);
-            setReport(response);
-            // return response;
+            const response = await getInterviewReportById({ interviewId });
+            setReport(response.interviewReport);
+            return response.interviewReport;
         }catch(error){
             console.log("error");
             throw error;
@@ -51,8 +51,8 @@ export const useInterview = ()=>{
         try{
             setLoading(true);
             const response = await getAllInterviewReports();
-            setReports(response);
-            // return response;
+            setReports(response.interviewReports);
+            return response.interviewReports;
         }catch(error){
             console.log("error");
             throw error;
