@@ -2,7 +2,7 @@ import express from "express";
 import authuser from "../middlewares/auth.middleware.js";
 // import {createInterviewReport,getInterviewReport,getAllInterviewReport} from "./controllers/interview.controller.js"
 
-import {createInterviewReport,getInterviewReport,getAllInterviewReport} from "../controllers/interview.controller.js"
+import {createInterviewReport,getInterviewReport,getAllInterviewReport, generateResumePdf} from "../controllers/interview.controller.js"
 
 
 
@@ -39,6 +39,13 @@ interviewRouter.get('/report/:interviewId',authuser,getInterviewReport)
 interviewRouter.get('/',authuser,getAllInterviewReport)
 
 
+/**
+ * @route get /api/interview/report/:interviewId/pdf
+ * @description generate and download resume pdf
+ * @access private
+ */
+
+interviewRouter.post('/report/:interviewId',authuser,generateResumePdf)
 
 
 

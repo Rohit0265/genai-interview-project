@@ -35,3 +35,5 @@ export const getAllInterviewReports = async()=>{
     const response = await api.get("/api/interview/")
     return response.data
 }
+
+

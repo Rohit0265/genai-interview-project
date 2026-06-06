@@ -77,4 +77,56 @@ async function generateInterviewReport({resume,selfDescription,jobDescription}){
   return JSON.parse(response.text)
 }
 
-export default generateInterviewReport;
+
+
+async function GeneratePDF(htmlContent){
+
+const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  // Set the content of the page to our generated HTML
+  await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+
+  // Generate PDF and save it to a file
+  const pdfBuffer = await page.pdf({
+    format:'A4'
+  })
+  await browser.close();
+
+  return pdfBuffer;
+
+}
+
+
+async function generateResumePdf({resume,selfDescription,jobDescription}){
+  
+const resumePDFSchema = z.object({
+  resumehtml:z.string().describe("The HTML content of the resume which can be converted to pdf using puppeteer")
+})
+const prompt = `Generate a resume for the following candidate based on their resume, self-description, and job description.
+
+Resume: ${resume}
+Self Description: ${selfDescription}
+Job Description: ${jobDescription}
+
+the response should be json object with a single field resumehtml which contains the html content of the resume
+
+`
+
+const response = await ai.models.generateContent({
+  model: "gemini-2.5-flash-lite",
+  contents: prompt,
+  config: {
+    responseMimeType: "application/json",
+    responseSchema: zodToJsonSchema(resumePDFSchema),
+  },
+})
+const jsonContent = JSON.parse(response.text)
+
+const pdfBuffer = GeneratePDF(jsonContent.resumehtml)
+return pdfBuffer
+
+}
+
+
+export default {generateInterviewReport,generateResumePdf};
