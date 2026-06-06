@@ -61,4 +61,4 @@ async function getAllInterviewReport(req,res){
 
 
 
-export default {createInterviewReport,getInterviewReport,getAllInterviewReport};
+export {createInterviewReport,getInterviewReport,getAllInterviewReport};
