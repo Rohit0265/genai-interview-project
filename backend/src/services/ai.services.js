@@ -1,14 +1,14 @@
 import { GoogleGenAI } from "@google/genai";
-import {z} from "zod";
-import {zodToJsonSchema} from "zod-to-json-schema";
+import { z } from "zod";
+import { zodToJsonSchema } from "zod-to-json-schema";
 import puppeteer from "puppeteer";
 
 const ai = new GoogleGenAI({
-    apiKey:process.env.GOOGLE_API_KEY
+  apiKey: process.env.GOOGLE_API_KEY
 });
 
 async function invoking() {
-    console.log("API KEY:", process.env.GOOGLE_API_KEY);
+  console.log("API KEY:", process.env.GOOGLE_API_KEY);
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash-lite",
     contents: "Explain how AI works in a few words",
@@ -18,40 +18,40 @@ async function invoking() {
 
 const interviewReportSchema = z.object({
 
-matchScore:z.number().describe("A score between 0 and 100 how well the candidate matches the job describe"),
+  matchScore: z.number().describe("A score between 0 and 100 how well the candidate matches the job describe"),
 
 
 
-  technicalQuestions:z.array(z.object({
-    question:z.string().describe("The technical question can be asked in the interview"),
-    intention:z.string().describe("The intention of interviewer behind asking this question"),
-    answer:z.string().describe("THow to answer this question, what points to cover,what approach to take etc.")
+  technicalQuestions: z.array(z.object({
+    question: z.string().describe("The technical question can be asked in the interview"),
+    intention: z.string().describe("The intention of interviewer behind asking this question"),
+    answer: z.string().describe("THow to answer this question, what points to cover,what approach to take etc.")
   })).describe("Technical questions that can be asked in the interview along with their interntion"),
 
-  behavioralQuestions:z.array(z.object({
-    question:z.string().describe("The behavioral question can be asked in the interview"),
-    intention:z.string().describe("The intention of interviewer behind asking this question"),
-    answer:z.string().describe("THow to answer this question, what points to cover,what approach to take etc.")
+  behavioralQuestions: z.array(z.object({
+    question: z.string().describe("The behavioral question can be asked in the interview"),
+    intention: z.string().describe("The intention of interviewer behind asking this question"),
+    answer: z.string().describe("THow to answer this question, what points to cover,what approach to take etc.")
   })).describe("behavioral questions that can be asked in the interview along with their interntion"),
 
 
-  skillgaps:z.array(z.object({
-    skill:z.string().describe("The skill which the candidate is lacking"),
-    severity:z.enum(["high",'medium','low']).describe("The severity of this skills gaps that the candidate is lacking")
+  skillgaps: z.array(z.object({
+    skill: z.string().describe("The skill which the candidate is lacking"),
+    severity: z.enum(["high", 'medium', 'low']).describe("The severity of this skills gaps that the candidate is lacking")
   })).describe("skillgaps are the skills which the candidate is lacking"),
 
-  
-  preparationPlan:z.array(z.object({
-   day:z.string().describe("The day number in the preparation plan,starting from 1"),
-   focus:z.string().describe("The main focus of this day in the preparation plan, e.g. read a specific book or topic"),
-   task:z.array(z.string().describe("The task to be performed on this day,e.g. solve specific problems from the book or topic")).describe("task that should be performed on this day")
-   })).describe("The preparation plan for the candidate, which is a list of days and the task to be performed on each day"),
-   title:z.string().describe("The title of the job for which the interview is being conducted"),
-     
+
+  preparationPlan: z.array(z.object({
+    day: z.string().describe("The day number in the preparation plan,starting from 1"),
+    focus: z.string().describe("The main focus of this day in the preparation plan, e.g. read a specific book or topic"),
+    task: z.array(z.string().describe("The task to be performed on this day,e.g. solve specific problems from the book or topic")).describe("task that should be performed on this day")
+  })).describe("The preparation plan for the candidate, which is a list of days and the task to be performed on each day"),
+  title: z.string().describe("The title of the job for which the interview is being conducted"),
+
 
 })
 
-async function generateInterviewReport({resume,selfDescription,jobDescription}){
+async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash-lite",
     contents: `
@@ -80,10 +80,11 @@ async function generateInterviewReport({resume,selfDescription,jobDescription}){
 
 
 
-async function GeneratePDF(htmlContent){
+async function GeneratePDF(htmlContent) {
 
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
   });
   const page = await browser.newPage();
 
@@ -92,12 +93,12 @@ async function GeneratePDF(htmlContent){
 
   // Generate PDF and save it to a file
   const pdfBuffer = await page.pdf({
-    format:'A4',
-    margin:{
-      top:'20mm',
-      bottom:'20mm',
-      left:'20mm',
-      right:'20mm'
+    format: 'A4',
+    margin: {
+      top: '20mm',
+      bottom: '20mm',
+      left: '20mm',
+      right: '20mm'
     }
   })
   await browser.close();
@@ -107,12 +108,12 @@ async function GeneratePDF(htmlContent){
 }
 
 
-async function generateResumePdf({resume,selfDescription,jobDescription}){
-  
-const resumePDFSchema = z.object({
-  resumehtml:z.string().describe("The HTML content of the resume which can be converted to pdf using puppeteer")
-})
-const prompt = `Act as a world-class executive resume writer, ATS optimization specialist, hiring manager, recruiter, and career coach with extensive experience across multiple industries including technology, finance, healthcare, consulting, marketing, sales, operations, education, engineering, government, and management.
+async function generateResumePdf({ resume, selfDescription, jobDescription }) {
+
+  const resumePDFSchema = z.object({
+    resumehtml: z.string().describe("The HTML content of the resume which can be converted to pdf using puppeteer")
+  })
+  const prompt = `Act as a world-class executive resume writer, ATS optimization specialist, hiring manager, recruiter, and career coach with extensive experience across multiple industries including technology, finance, healthcare, consulting, marketing, sales, operations, education, engineering, government, and management.
 
 Use THe jake resume template from overleaf and make it
 
@@ -351,18 +352,18 @@ the response should be json object with a single field resumehtml which contains
 make the resume ats friendly and professional, keep it in a single page, do not use much styling. make it look modern, with professional font.
 `
 
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-flash-lite",
-  contents: prompt,
-  config: {
-    responseMimeType: "application/json",
-    responseSchema: zodToJsonSchema(resumePDFSchema),
-  },
-})
-const jsonContent = JSON.parse(response.text)
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash-lite",
+    contents: prompt,
+    config: {
+      responseMimeType: "application/json",
+      responseSchema: zodToJsonSchema(resumePDFSchema),
+    },
+  })
+  const jsonContent = JSON.parse(response.text)
 
-const pdfBuffer = await GeneratePDF(jsonContent.resumehtml)
-return pdfBuffer
+  const pdfBuffer = await GeneratePDF(jsonContent.resumehtml)
+  return pdfBuffer
 
 }
 
