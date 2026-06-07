@@ -43,22 +43,22 @@ const Interview = () => {
 
   if (loading || !report) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex items-center justify-center">
         <div className="flex flex-col items-center space-y-4">
-          <div className="w-12 h-12 rounded-full border-4 border-indigo-500/10 border-t-indigo-500 animate-spin"></div>
-          <p className="text-slate-400 text-sm">Loading interview report...</p>
+          <div className="w-12 h-12 rounded-full border-4 border-blue-500/10 border-t-[#0652dd] animate-spin"></div>
+          <p className="text-slate-500 text-sm font-medium">Loading interview report...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans p-6 sm:p-10 flex flex-col justify-between antialiased">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-800 font-sans p-6 sm:p-10 flex flex-col justify-between antialiased">
       {/* Top Header */}
       <div className="max-w-6xl mx-auto w-full mb-6 flex items-center justify-between">
         <button
           onClick={() => navigate('/')}
-          className="flex items-center space-x-2 text-xs font-semibold text-slate-400 hover:text-white transition-all bg-slate-900 px-4 py-2 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer"
+          className="flex items-center space-x-2 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all bg-white px-4 py-2 rounded-xl border border-slate-200 hover:border-slate-300 cursor-pointer shadow-sm"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -68,31 +68,31 @@ const Interview = () => {
 
         <div className="flex items-center space-x-3">
           <span className="text-xs text-slate-500 font-medium">Match Score:</span>
-          <span className="px-2.5 py-1 text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-lg">
+          <span className="px-2.5 py-1 text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-lg">
             {report?.matchScore}%
           </span>
         </div>
       </div>
 
       {/* Main Container */}
-      <div className="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-0 border border-slate-800 rounded-3xl overflow-hidden bg-slate-950 shadow-2xl">
+      <div className="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-0 border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
         
         {/* Left Sidebar (3/12 width) */}
-        <div className="lg:col-span-3 border-r border-slate-800 p-6 flex flex-col justify-start space-y-6">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+        <div className="lg:col-span-3 border-r border-slate-200 p-6 flex flex-col justify-start space-y-6 bg-slate-50/50">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">
             Assessment Sections
           </div>
           
-          <nav className="flex flex-col space-y-2">
+          <nav className="flex flex-col space-y-1">
             <button
               onClick={() => {
                 setActiveTab('technical')
                 setExpandedIndex(null)
               }}
-              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
+              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
                 activeTab === 'technical'
-                  ? 'bg-slate-900 text-white border-l-4 border-indigo-500 pl-3'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
+                  ? 'bg-white text-[#0652dd] border-l-4 border-[#0652dd] pl-3 shadow-sm border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/50'
               }`}
             >
               Technical questions
@@ -102,10 +102,10 @@ const Interview = () => {
                 setActiveTab('behavioral')
                 setExpandedIndex(null)
               }}
-              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
+              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
                 activeTab === 'behavioral'
-                  ? 'bg-slate-900 text-white border-l-4 border-indigo-500 pl-3'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
+                  ? 'bg-white text-[#0652dd] border-l-4 border-[#0652dd] pl-3 shadow-sm border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/50'
               }`}
             >
               Behavioral questions
@@ -115,10 +115,10 @@ const Interview = () => {
                 setActiveTab('roadmap')
                 setExpandedIndex(null)
               }}
-              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
+              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
                 activeTab === 'roadmap'
-                  ? 'bg-slate-900 text-white border-l-4 border-indigo-500 pl-3'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
+                  ? 'bg-white text-[#0652dd] border-l-4 border-[#0652dd] pl-3 shadow-sm border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/50'
               }`}
             >
               Road Map
@@ -126,14 +126,14 @@ const Interview = () => {
           </nav>
 
           {/* Download Resume Section */}
-          <div className="mt-auto pt-6 border-t border-slate-900 flex flex-col space-y-3">
-            <div className="text-[10px] font-bold uppercase tracking-widest text-slate-600">
+          <div className="mt-auto pt-6 border-t border-slate-200 flex flex-col space-y-3">
+            <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
               Export Resume
             </div>
             <button
               onClick={handleDownloadResume}
               disabled={downloading}
-              className="w-full flex items-center justify-center space-x-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 transition-all px-4 py-3 rounded-xl shadow-lg shadow-indigo-600/10 cursor-pointer border border-indigo-500/20 active:scale-[0.98]"
+              className="w-full flex items-center justify-center space-x-2 text-xs font-semibold text-white bg-[#0652dd] hover:bg-[#0048d0] disabled:opacity-50 transition-all px-4 py-3 rounded-xl shadow-sm cursor-pointer border border-[#0652dd] active:scale-[0.98]"
             >
               {downloading ? (
                 <>
@@ -153,26 +153,26 @@ const Interview = () => {
         </div>
 
         {/* Middle Main Content Area (6/12 width) */}
-        <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col min-h-[500px] border-r border-slate-800">
+        <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col min-h-[500px] border-r border-slate-200 bg-white">
           
           {/* TAB: Technical Questions */}
           {activeTab === 'technical' && (
             <div className="space-y-6 flex-1">
               <div>
-                <h2 className="text-xl font-bold text-white">Technical practice</h2>
-                <p className="text-xs text-slate-500 mt-1">Practice these core technical concepts customized for the job description.</p>
+                <h2 className="text-xl font-bold text-slate-900">Technical practice</h2>
+                <p className="text-xs text-slate-400 mt-1">Practice these core technical concepts customized for the job description.</p>
               </div>
 
               <div className="space-y-4">
                 {report?.technicalQuestions.map((q, idx) => (
-                  <div key={idx} className="bg-slate-900/40 border border-slate-850 rounded-2xl overflow-hidden transition-all">
+                  <div key={idx} className="bg-slate-50/30 border border-slate-200 rounded-xl overflow-hidden transition-all">
                     <button
                       onClick={() => toggleExpand(idx)}
-                      className="w-full p-4 flex items-start justify-between text-left cursor-pointer hover:bg-slate-900/70"
+                      className="w-full p-4 flex items-start justify-between text-left cursor-pointer hover:bg-slate-50"
                     >
                       <div className="pr-4">
-                        <span className="text-xs font-bold text-slate-500 mr-2">Q{idx + 1}.</span>
-                        <span className="text-xs sm:text-sm font-semibold text-slate-200">{q.question}</span>
+                        <span className="text-xs font-bold text-slate-400 mr-2">Q{idx + 1}.</span>
+                        <span className="text-xs sm:text-sm font-semibold text-slate-700">{q.question}</span>
                       </div>
                       <span className="shrink-0 mt-0.5 text-slate-400">
                         {expandedIndex === idx ? (
@@ -188,18 +188,18 @@ const Interview = () => {
                     </button>
 
                     {expandedIndex === idx && (
-                      <div className="px-4 pb-4 pt-1 border-t border-slate-900 bg-slate-950/40 space-y-3.5 text-xs sm:text-sm">
-                        <div>
-                          <h5 className="text-[11px] uppercase tracking-wider font-extrabold text-indigo-400 mb-1.5">
+                      <div className="px-4 pb-4 pt-1 border-t border-slate-100 bg-[#fbfcfd] space-y-3.5 text-xs sm:text-sm">
+                        <div className="mt-3">
+                          <h5 className="text-[10px] uppercase tracking-wider font-extrabold text-blue-600 mb-1.5">
                             Intention
                           </h5>
-                          <p className="text-slate-400 leading-relaxed">{q.intention}</p>
+                          <p className="text-slate-600 leading-relaxed">{q.intention}</p>
                         </div>
                         <div>
-                          <h5 className="text-[11px] uppercase tracking-wider font-extrabold text-emerald-400 mb-1.5">
+                          <h5 className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-600 mb-1.5">
                             Sample Answer
                           </h5>
-                          <p className="text-slate-300 leading-relaxed whitespace-pre-line">{q.answer}</p>
+                          <p className="text-slate-700 leading-relaxed whitespace-pre-line bg-white border border-slate-100 p-3 rounded-lg">{q.answer}</p>
                         </div>
                       </div>
                     )}
@@ -213,20 +213,20 @@ const Interview = () => {
           {activeTab === 'behavioral' && (
             <div className="space-y-6 flex-1">
               <div>
-                <h2 className="text-xl font-bold text-white">Behavioral practice</h2>
-                <p className="text-xs text-slate-500 mt-1">Structured questions to evaluate collaboration, conflict resolution, and growth.</p>
+                <h2 className="text-xl font-bold text-slate-900">Behavioral practice</h2>
+                <p className="text-xs text-slate-400 mt-1">Structured questions to evaluate collaboration, conflict resolution, and growth.</p>
               </div>
 
               <div className="space-y-4">
                 {report.behavioralQuestions.map((q, idx) => (
-                  <div key={idx} className="bg-slate-900/40 border border-slate-850 rounded-2xl overflow-hidden transition-all">
+                  <div key={idx} className="bg-slate-50/30 border border-slate-200 rounded-xl overflow-hidden transition-all">
                     <button
                       onClick={() => toggleExpand(idx)}
-                      className="w-full p-4 flex items-start justify-between text-left cursor-pointer hover:bg-slate-900/70"
+                      className="w-full p-4 flex items-start justify-between text-left cursor-pointer hover:bg-slate-50"
                     >
                       <div className="pr-4">
-                        <span className="text-xs font-bold text-slate-500 mr-2">Q{idx + 1}.</span>
-                        <span className="text-xs sm:text-sm font-semibold text-slate-200">{q.question}</span>
+                        <span className="text-xs font-bold text-slate-400 mr-2">Q{idx + 1}.</span>
+                        <span className="text-xs sm:text-sm font-semibold text-slate-700">{q.question}</span>
                       </div>
                       <span className="shrink-0 mt-0.5 text-slate-400">
                         {expandedIndex === idx ? (
@@ -242,18 +242,18 @@ const Interview = () => {
                     </button>
 
                     {expandedIndex === idx && (
-                      <div className="px-4 pb-4 pt-1 border-t border-slate-900 bg-slate-950/40 space-y-3.5 text-xs sm:text-sm">
-                        <div>
-                          <h5 className="text-[11px] uppercase tracking-wider font-extrabold text-indigo-400 mb-1.5">
+                      <div className="px-4 pb-4 pt-1 border-t border-slate-100 bg-[#fbfcfd] space-y-3.5 text-xs sm:text-sm">
+                        <div className="mt-3">
+                          <h5 className="text-[10px] uppercase tracking-wider font-extrabold text-blue-600 mb-1.5">
                             Intention
                           </h5>
-                          <p className="text-slate-400 leading-relaxed">{q.intention}</p>
+                          <p className="text-slate-600 leading-relaxed">{q.intention}</p>
                         </div>
                         <div>
-                          <h5 className="text-[11px] uppercase tracking-wider font-extrabold text-emerald-400 mb-1.5">
+                          <h5 className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-600 mb-1.5">
                             Sample STAR Answer
                           </h5>
-                          <p className="text-slate-300 leading-relaxed whitespace-pre-line">{q.answer}</p>
+                          <p className="text-slate-700 leading-relaxed whitespace-pre-line bg-white border border-slate-100 p-3 rounded-lg">{q.answer}</p>
                         </div>
                       </div>
                     )}
@@ -267,27 +267,27 @@ const Interview = () => {
           {activeTab === 'roadmap' && (
             <div className="space-y-6 flex-1">
               <div>
-                <h2 className="text-xl font-bold text-white">Preparation Road Map</h2>
-                <p className="text-xs text-slate-500 mt-1">A step-by-step custom training roadmap tailored to bridge any candidate gaps.</p>
+                <h2 className="text-xl font-bold text-slate-900">Preparation Road Map</h2>
+                <p className="text-xs text-slate-400 mt-1">A step-by-step custom training roadmap tailored to bridge any candidate gaps.</p>
               </div>
 
-              <div className="relative border-l border-slate-800 ml-4 pl-6 space-y-8 mt-4">
+              <div className="relative border-l border-slate-200 ml-4 pl-6 space-y-8 mt-6">
                 {report.preparationPlan.map((plan, index) => (
                   <div key={index} className="relative">
                     {/* Day Marker Dot */}
-                    <div className="absolute -left-[37px] top-0.5 bg-indigo-600 border border-slate-950 w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-extrabold text-white shadow-lg">
+                    <div className="absolute -left-[37px] top-0.5 bg-[#0652dd] border border-white w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-extrabold text-white shadow-sm">
                       D{plan.day}
                     </div>
                     
                     <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-white">
-                        Day {plan.day}: <span className="text-indigo-400">{plan.focus}</span>
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-800">
+                        Day {plan.day}: <span className="text-blue-600 font-semibold">{plan.focus}</span>
                       </h4>
                       
                       {plan.task && plan.task.length > 0 ? (
                         <ul className="mt-3 space-y-2">
                           {plan.task.map((t, tIdx) => (
-                            <li key={tIdx} className="flex items-start space-x-2.5 text-xs text-slate-400">
+                            <li key={tIdx} className="flex items-start space-x-2.5 text-xs text-slate-600">
                               <svg className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                               </svg>
@@ -296,7 +296,7 @@ const Interview = () => {
                           ))}
                         </ul>
                       ) : (
-                        <p className="text-slate-600 text-[11px] mt-1.5 italic">No specific tasks allocated.</p>
+                        <p className="text-slate-400 text-[11px] mt-1.5 italic">No specific tasks allocated.</p>
                       )}
                     </div>
                   </div>
@@ -308,16 +308,16 @@ const Interview = () => {
         </div>
 
         {/* Right Sidebar (3/12 width) */}
-        <div className="lg:col-span-3 p-6 flex flex-col space-y-6">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <div className="lg:col-span-3 p-6 flex flex-col space-y-6 bg-slate-50/50">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
             Skill Gaps
           </div>
 
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap gap-2">
             {report?.skillgaps.map((skill, index) => (
               <span
                 key={index}
-                className="px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-900 border border-slate-800 text-slate-200 hover:border-slate-700 transition-all"
+                className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-slate-300 transition-all shadow-sm"
               >
                 {skill}
               </span>
@@ -328,7 +328,7 @@ const Interview = () => {
       </div>
 
       {/* Footer */}
-      <footer className="text-center text-[10px] text-slate-600 mt-6 max-w-6xl mx-auto w-full">
+      <footer className="text-center text-[10px] text-slate-400 mt-6 max-w-6xl mx-auto w-full">
         Interview AI • Layout Mockup
       </footer>
     </div>
