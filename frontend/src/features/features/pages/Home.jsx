@@ -168,7 +168,7 @@ const Home = () => {
             </div>
             <div>
               <span className="text-lg font-bold text-slate-900 dark:text-white">
-                Interview AI
+                PrepAI
               </span>
 
             </div>
@@ -483,7 +483,7 @@ const Home = () => {
 
       {/* Bottom Footer */}
       <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6 text-center text-xs text-slate-500 dark:text-slate-500 mt-auto">
-        <p>© {new Date().getFullYear()} Interview AI. Powered by Gemini. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} PrepAI. Powered by Gemini. All rights reserved.</p>
       </footer>
     </div>
   );

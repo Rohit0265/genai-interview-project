@@ -356,7 +356,7 @@ const Interview = () => {
 
       {/* Footer */}
       <footer className="text-center text-[10px] text-slate-450 dark:text-slate-550 mt-6 max-w-6xl mx-auto w-full">
-        Interview AI • Layout Mockup
+        PrepAI • Layout Mockup
       </footer>
     </div>
   )
