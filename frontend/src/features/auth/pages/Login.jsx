@@ -30,7 +30,7 @@ const Login = () => {
     <main className="min-h-screen w-full flex flex-col justify-between bg-[#f1f5f9] dark:bg-[#0b0f19] text-slate-800 dark:text-slate-200 p-6 font-sans">
       {/* Top Header */}
       <div className="w-full max-w-7xl mx-auto flex justify-between items-center mb-6">
-        <span className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">InterviewReady</span>
+        <span className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">InterviewAI</span>
         
         {/* Theme Toggle Button */}
         <button
@@ -126,7 +126,7 @@ const Login = () => {
       {/* Bottom Footer */}
       <footer className="w-full max-w-7xl mx-auto border-t border-slate-200/80 dark:border-slate-800 pt-6 mt-6 flex flex-col md:flex-row md:justify-between items-center space-y-4 md:space-y-0">
         <div className="flex flex-col md:flex-row items-center md:space-x-8 space-y-2 md:space-y-0">
-          <span className="text-sm font-bold text-slate-900 dark:text-white">InterviewReady</span>
+          <span className="text-sm font-bold text-slate-900 dark:text-white">Interview AI</span>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <a href="#" className="text-xs font-semibold text-slate-505 dark:text-slate-450 hover:text-slate-900 dark:hover:text-white transition-all">Privacy Policy</a>
             <a href="#" className="text-xs font-semibold text-slate-505 dark:text-slate-450 hover:text-slate-900 dark:hover:text-white transition-all">Terms of Service</a>
@@ -135,7 +135,7 @@ const Login = () => {
           </div>
         </div>
         <div className="text-[10px] sm:text-xs text-slate-400 dark:text-slate-550 text-center md:text-right">
-          © 2024 InterviewReady. All rights reserved. Professional Coaching Platform.
+          © 2024 Interview AI. All rights reserved. Professional Coaching Platform.
         </div>
       </footer>
     </main>
