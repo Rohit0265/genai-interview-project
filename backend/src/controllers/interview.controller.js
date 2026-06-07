@@ -64,9 +64,9 @@ async function getAllInterviewReport(req,res){
  */
 const generateResumePdf = async(req,res) => {
 
-    const {interviewReportId} = req.params
+    const {interviewId} = req.params
 
-    const interviewReport = await interviewReportModel.findById(interviewReportId)
+    const interviewReport = await interviewReportModel.findById(interviewId)
 
 
     if(!interviewReport){
@@ -82,7 +82,7 @@ const generateResumePdf = async(req,res) => {
 
     res.set({
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename=resume_${interviewReportId}.pdf`
+        "Content-Disposition": `attachment; filename=resume_${interviewId}.pdf`
     })
 
 
