@@ -41,7 +41,7 @@ const Interview = () => {
     setExpandedIndex(expandedIndex === index ? null : index)
   }
 
-  if (loading) {
+  if (loading || !report) {
     return (
       <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center">
         <div className="flex flex-col items-center space-y-4">
@@ -69,7 +69,7 @@ const Interview = () => {
         <div className="flex items-center space-x-3">
           <span className="text-xs text-slate-500 font-medium">Match Score:</span>
           <span className="px-2.5 py-1 text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-lg">
-            {report.matchScore}%
+            {report?.matchScore}%
           </span>
         </div>
       </div>
@@ -164,7 +164,7 @@ const Interview = () => {
               </div>
 
               <div className="space-y-4">
-                {report.technicalQuestions.map((q, idx) => (
+                {report?.technicalQuestions.map((q, idx) => (
                   <div key={idx} className="bg-slate-900/40 border border-slate-850 rounded-2xl overflow-hidden transition-all">
                     <button
                       onClick={() => toggleExpand(idx)}
@@ -314,7 +314,7 @@ const Interview = () => {
           </div>
 
           <div className="flex flex-wrap gap-2.5">
-            {report.skillgaps.map((skill, index) => (
+            {report?.skillgaps.map((skill, index) => (
               <span
                 key={index}
                 className="px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-900 border border-slate-800 text-slate-200 hover:border-slate-700 transition-all"

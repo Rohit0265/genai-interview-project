@@ -12,6 +12,16 @@ export const useAuth = ()=>{
     const {user,setuser,loading,setLoading} = context
     const navigate = useNavigate()
 
+
+    useEffect(()=>{
+        const getMeUser = async()=>{
+            const data = await getMe();
+            setuser(data.user)
+            setLoading(false)
+        }
+        getMeUser();
+    },[])
+
     const handleLogin = async ({email,password})=>{
         try {
             setLoading(true)
@@ -54,14 +64,7 @@ export const useAuth = ()=>{
         }
     }
 
-    useEffect(()=>{
-        const getMeUser = async()=>{
-            const data = await getMe();
-            setuser(data.user)
-            setLoading(false)
-        }
-        getMeUser();
-    },[])
+
 
     return {user,loading,handleLogin,handleLogout,handleRegister}
 
