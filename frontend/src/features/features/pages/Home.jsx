@@ -298,7 +298,7 @@ const Home = () => {
                 <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
                   <div className="space-y-1.5 flex-1 flex flex-col">
                     <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                      Resume (PDF, DOCX)
+                      Resume (PDF)
                     </label>
 
                     {!resumeFile ? (
@@ -321,7 +321,7 @@ const Home = () => {
                           Click to upload or drag and drop
                         </p>
                         <p className="text-xs text-slate-450 dark:text-slate-500 text-center">
-                          Maximum file size: 10MB
+                          Maximum file size: 5MB
                         </p>
 
                         <label
@@ -371,15 +371,6 @@ const Home = () => {
                     )}
                   </div>
 
-                  {/* Info Banner Box */}
-                  <div className="bg-[#eff6ff] dark:bg-blue-950/15 border border-[#bfdbfe]/40 dark:border-blue-900/25 rounded-xl p-4 flex items-start space-x-3">
-                    <svg className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <p className="text-xs text-blue-700 dark:text-blue-450 leading-relaxed font-medium">
-                      Our AI engine compares your unique skills against 50+ industry standards for accurate matching.
-                    </p>
-                  </div>
                 </div>
 
               </div>
