@@ -299,20 +299,23 @@ const Interview = () => {
                         Day {plan.day}: <span className="text-blue-600 dark:text-blue-400 font-semibold">{plan.focus}</span>
                       </h4>
                       
-                      {plan.task && plan.task.length > 0 ? (
-                        <ul className="mt-3 space-y-2">
-                          {plan.task.map((t, tIdx) => (
-                            <li key={tIdx} className="flex items-start space-x-2.5 text-xs text-slate-650 dark:text-slate-400">
-                              <svg className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                              </svg>
-                              <span className="leading-relaxed">{t}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="text-slate-400 dark:text-slate-550 text-[11px] mt-1.5 italic">No specific tasks allocated.</p>
-                      )}
+                      {(() => {
+                        const tasksList = plan.task || plan.tasks;
+                        return tasksList && tasksList.length > 0 ? (
+                          <ul className="mt-3 space-y-2">
+                            {tasksList.map((t, tIdx) => (
+                              <li key={tIdx} className="flex items-start space-x-2.5 text-xs text-slate-650 dark:text-slate-400">
+                                <svg className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span className="leading-relaxed">{t}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-slate-400 dark:text-slate-550 text-[11px] mt-1.5 italic">No specific tasks allocated.</p>
+                        );
+                      })()}
                     </div>
                   </div>
                 ))}
@@ -329,14 +332,23 @@ const Interview = () => {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {report?.skillgaps.map((skill, index) => (
-              <span
-                key={index}
-                className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-850 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-755 transition-all shadow-sm"
-              >
-                {skill}
-              </span>
-            ))}
+            {(report?.skillgaps || report?.skillGaps || [])?.map((skill, index) => {
+              const skillName = typeof skill === 'object' ? skill.skill : skill;
+              const severity = typeof skill === 'object' ? skill.severity : null;
+              return (
+                <span
+                  key={index}
+                  className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-850 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-755 transition-all shadow-sm flex items-center space-x-1.5"
+                >
+                  <span>{skillName}</span>
+                  {severity && (
+                    <span className={`w-1.5 h-1.5 rounded-full ${
+                      severity === 'high' ? 'bg-rose-500' : severity === 'medium' ? 'bg-amber-500' : 'bg-blue-500'
+                    }`} title={`Severity: ${severity}`} />
+                  )}
+                </span>
+              );
+            })}
           </div>
         </div>
 

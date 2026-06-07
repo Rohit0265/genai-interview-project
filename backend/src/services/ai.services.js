@@ -35,18 +35,18 @@ matchScore:z.number().describe("A score between 0 and 100 how well the candidate
   })).describe("behavioral questions that can be asked in the interview along with their interntion"),
 
 
-    skillGaps:z.array(z.object({
-      skill:z.string().describe("The skill which the candidate is lacking"),
-      severity:z.enum(["high",'medium','low']).describe("The severity of this skills gaps that the candidate is lacking")
-    })).describe("skillGaps are the skills which the candidate is lacking"),
+  skillgaps:z.array(z.object({
+    skill:z.string().describe("The skill which the candidate is lacking"),
+    severity:z.enum(["high",'medium','low']).describe("The severity of this skills gaps that the candidate is lacking")
+  })).describe("skillgaps are the skills which the candidate is lacking"),
 
-    
-    preparationPlan:z.array(z.object({
-     day:z.string().describe("The day number in the preparation plan,starting from 1"),
-     focus:z.string().describe("THe main focus of this day in the preparatoion plan, e.g. read a specific book or topic"),
-     tasks:z.array(z.string().describe("The task to be performed on this day,e.g. solve specific problems from the book or topic")).describe("tasks that should be performed on this day")
-     })).describe("The preparation plan for the candidate, which is a list of days and the tasks to be performed on each day"),
-     title:z.string().describe("The title of the job for which the interview is being conducted"),
+  
+  preparationPlan:z.array(z.object({
+   day:z.string().describe("The day number in the preparation plan,starting from 1"),
+   focus:z.string().describe("The main focus of this day in the preparation plan, e.g. read a specific book or topic"),
+   task:z.array(z.string().describe("The task to be performed on this day,e.g. solve specific problems from the book or topic")).describe("task that should be performed on this day")
+   })).describe("The preparation plan for the candidate, which is a list of days and the task to be performed on each day"),
+   title:z.string().describe("The title of the job for which the interview is being conducted"),
      
 
 })
