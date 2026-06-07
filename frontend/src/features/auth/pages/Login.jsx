@@ -135,7 +135,7 @@ const Login = () => {
           </div>
         </div>
         <div className="text-[10px] sm:text-xs text-slate-400 dark:text-slate-550 text-center md:text-right">
-          © 2024 Interview AI. All rights reserved. Professional Coaching Platform.
+          © 2026 Interview AI. All rights reserved. Professional Coaching Platform.
         </div>
       </footer>
     </main>
