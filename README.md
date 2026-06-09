@@ -1,5 +1,7 @@
 # 🚀 PrepAI: GenAI Interview Coach & Resume Builder
 
+wefbh
+
 PrepAI is a premium, full-stack web application designed to help job seekers ace their technical and behavioral interviews. Powered by **Google Gemini**, the application analyzes a candidate's resume, self-description, and target job description to generate customized practice questions, sample answers, a personalized study roadmap, and an ATS-optimized PDF resume.
 
 ---
@@ -99,4 +101,4 @@ Due to Puppeteer's system dependencies, the backend is configured to be deployed
 ### Frontend (Vercel or Netlify)
 1. Deploy as a static site and select the `frontend` folder as the **Root Directory**.
 2. Configure environment variables in the dashboard:
-   - `VITE_API_BASE_URL` (Set to your live backend URL, e.g., `https://api.onrender.com`)
+   - `VITE_API_BASE_URL` (Set to your live backend URL, e.g., `https://api.onrender.com
