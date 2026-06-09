@@ -1,6 +1,6 @@
 # 🚀 PrepAI: GenAI Interview Coach & Resume Builder
 
-wefbh
+wefbhse
 
 PrepAI is a premium, full-stack web application designed to help job seekers ace their technical and behavioral interviews. Powered by **Google Gemini**, the application analyzes a candidate's resume, self-description, and target job description to generate customized practice questions, sample answers, a personalized study roadmap, and an ATS-optimized PDF resume.
 
