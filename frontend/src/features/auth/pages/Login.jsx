@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router';
 import { useAuth } from '../hooks/hooks.auth';
 import { useTheme } from '../../theme.context';
+import Loading from '../../../components/Loading';
 
 const Login = () => {
   const { loading, handleLogin } = useAuth()
@@ -16,14 +17,7 @@ const Login = () => {
   }
 
   if(loading){
-    return (
-      <div className="min-h-screen bg-[#f1f5f9] dark:bg-[#0b0f19] text-slate-800 dark:text-slate-250 flex items-center justify-center">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="w-12 h-12 rounded-full border-4 border-blue-500/10 border-t-blue-600 dark:border-t-blue-500 animate-spin"></div>
-          <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">Loading...</p>
-        </div>
-      </div>
-    )
+    return <Loading variant="full-screen" message="Signing in to PrepAI..." description="Please wait while we verify your credentials." />
   }
 
   return (

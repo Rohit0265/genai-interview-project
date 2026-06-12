@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useInterview } from '../hooks/useInterview'
 import { useTheme } from '../../theme.context'
+import Loading from '../../../components/Loading'
 
 const Interview = () => {
   const navigate = useNavigate()
@@ -37,14 +38,7 @@ const Interview = () => {
   }
 
   if (loading || !report) {
-    return (
-      <div className="min-h-screen bg-[#f8fafc] dark:bg-[#0b0f19] text-slate-800 dark:text-slate-200 flex items-center justify-center animate-fade-in">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="w-12 h-12 rounded-full border-4 border-blue-500/10 border-t-[#0652dd] dark:border-t-blue-500 animate-spin"></div>
-          <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">Loading interview report...</p>
-        </div>
-      </div>
-    )
+    return <Loading variant="full-screen" message="Loading interview report..." description="Fetching your analysis results and preparation plan." />
   }
 
   return (
@@ -151,10 +145,7 @@ const Interview = () => {
               className="w-full flex items-center justify-center space-x-2 text-xs font-semibold text-white bg-[#0652dd] dark:bg-blue-600 hover:bg-[#0048d0] dark:hover:bg-blue-550 disabled:opacity-50 transition-all px-4 py-3 rounded-xl shadow-sm cursor-pointer border border-[#0652dd] dark:border-blue-600 active:scale-[0.98]"
             >
               {downloading ? (
-                <>
-                  <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
-                  <span>Generating PDF...</span>
-                </>
+                <Loading variant="inline" message="Generating PDF..." />
               ) : (
                 <>
                   <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

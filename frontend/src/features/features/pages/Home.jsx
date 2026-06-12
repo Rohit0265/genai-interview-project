@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useInterview } from '../hooks/useInterview'
 import { useNavigate } from 'react-router'
 import { useTheme } from '../../theme.context'
+import Loading from '../../../components/Loading'
 const Home = () => {
  
 
@@ -219,20 +220,7 @@ const Home = () => {
         
         {/* State 1: Generating (Loading screen) */}
         {isGenerating && (
-          <div className="flex-1 flex flex-col items-center justify-center py-20">
-            <div className="relative mb-6">
-              <div className="w-20 h-20 rounded-full border-4 border-blue-500/10 border-t-blue-600 dark:border-t-blue-500 animate-spin"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg className="w-8 h-8 text-blue-600 dark:text-blue-500 animate-pulse" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-            </div>
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Generating Report</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md text-center transition-all duration-300 animate-pulse">
-              {loadingMessage}
-            </p>
-          </div>
+          <Loading variant="full-screen" message="Generating Report" description={loadingMessage} />
         )}
 
         {/* State 2: Input Form (when not loading) */}
